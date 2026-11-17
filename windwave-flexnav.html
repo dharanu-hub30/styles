@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WindWave – Flexbox Navigation Menu</title>
+  <link rel="stylesheet" href="windwave-flexnav.css">
+</head>
+<body>
+  <nav class="navbar" aria-label="Main">
+    <a class="brand" href="#top">WindWave</a>
+    <ul class="menu">
+      <li class="dropdown">
+        <button class="drop-btn" aria-expanded="false" aria-haspopup="true">Blog <span class="caret">&#9662;</span></button>
+        <ul class="drop-list">
+          <li><a href="#wind-basics">Wind basics</a></li>
+          <li><a href="#smart-grids">Smart grids</a></li>
+          <li><a href="#city-stories">City stories</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <button class="drop-btn" aria-expanded="false" aria-haspopup="true">Plans <span class="caret">&#9662;</span></button>
+        <ul class="drop-list">
+          <li><a href="#rooftop">Rooftop</a></li>
+          <li><a href="#district">District</a></li>
+          <li><a href="#citywide">Citywide</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="btn btn-solid" href="#login">Log in</a></li>
+      <li><a class="btn btn-outline" href="#signup">Sign up</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <h1>Harnessing wind energy for smart cities</h1>
+    <p>WindWave connects turbines, sensors and smart grids so a city can use clean wind power when it blows and store it when it does not.</p>
+  </header>
+
+  <main class="cards">
+    <article id="rooftop">
+      <h2>Rooftop</h2>
+      <p>Small turbines on buildings power lifts, lights and common areas.</p>
+    </article>
+    <article id="district">
+      <h2>District</h2>
+      <p>Turbines on open corridors supply a neighbourhood and its charging points.</p>
+    </article>
+    <article id="citywide">
+      <h2>Citywide</h2>
+      <p>Wind farms outside the city feed a smart grid that balances the whole network.</p>
+    </article>
+  </main>
+
+  <section class="topics">
+    <h2 id="wind-basics">Wind basics</h2>
+    <p>Moving air turns turbine blades, which spin a generator to make electricity.</p>
+    <h2 id="smart-grids">Smart grids</h2>
+    <p>Sensors and forecasts match supply with demand in real time.</p>
+    <h2 id="city-stories">City stories</h2>
+    <p>Examples of streets, depots and public buildings running on local wind power.</p>
+    <h2 id="contact">Contact</h2>
+    <p>hello@windwave.example</p>
+  </section>
+
+  <footer class="footer">WindWave · Flexbox navigation practicum · Your name, Roll No.</footer>
+
+  <script>
+    // Click/tap support for dropdowns (hover works on desktop through CSS)
+    const buttons = document.querySelectorAll('.drop-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const open = btn.parentElement.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+        buttons.forEach(function (other) {
+          if (other !== btn) {
+            other.parentElement.classList.remove('open');
+            other.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    });
+    document.addEventListener('click', function () {
+      buttons.forEach(function (b) {
+        b.parentElement.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+/* WindWave – Flexbox responsive navigation menu */
+:root {
+  --bar: #1c1c1c;
+  --text: #ffffff;
+  --blue: #0a7cff;
+  --page: #eef4f6;
+  --ink: #12343b;
+  --font: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); background: var(--page); color: var(--ink); line-height: 1.6; }
+
+/* ---------- Navbar: flex container ---------- */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;                 /* items wrap on small screens */
+  justify-content: space-between;  /* brand left, menu right */
+  align-items: center;
+  gap: 0.5rem 1rem;
+  background: var(--bar);
+  padding: 0 1rem;
+}
+.brand { color: var(--text); font-weight: 800; font-size: 1.3rem; text-decoration: none; padding: 1rem 0; }
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu a, .drop-btn {
+  display: block;
+  color: var(--text);
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  padding: 1rem 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu > li > a:hover, .drop-btn:hover { background: #333; }
+.caret { font-size: 0.75rem; }
+
+/* ---------- Dropdowns ---------- */
+.dropdown { position: relative; }
+.drop-list {
+  display: none;
+  flex-direction: column;          /* column layout inside the dropdown */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 11rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--bar);
+  z-index: 10;
+}
+.drop-list a { padding: 0.8rem 1.1rem; font-weight: 500; }
+.drop-list a:hover { background: #333; }
+.dropdown:hover .drop-list,
+.dropdown:focus-within .drop-list,
+.dropdown.open .drop-list { display: flex; }
+.dropdown:hover > .drop-btn, .dropdown.open > .drop-btn { background: #333; }
+
+/* ---------- Buttons ---------- */
+.menu .btn { border-radius: 4px; padding: 0.55rem 1rem; margin: 0 0.15rem; }
+.menu .btn-solid { background: var(--blue); }
+.menu .btn-solid:hover { background: #0968d6; }
+.menu .btn-outline { border: 2px solid var(--text); }
+.menu .btn-outline:hover { background: var(--text); color: var(--bar); }
+
+a:focus-visible, .drop-btn:focus-visible { outline: 3px solid #ffb703; outline-offset: -3px; }
+
+/* ---------- Page content ---------- */
+.hero { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem 1.5rem; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.15; margin: 0 0 0.75rem; }
+.hero p { font-size: 1.15rem; margin: 0; }
+
+.cards { display: flex; flex-wrap: wrap; gap: 1rem; max-width: 960px; margin: 1.5rem auto; padding: 0 1.25rem; }
+.cards article { flex: 1 1 240px; background: #fff; border: 1px solid #cfdde1; border-radius: 6px; padding: 1.25rem; }
+.cards h2 { margin: 0 0 0.4rem; font-size: 1.2rem; }
+.cards p { margin: 0; }
+
+.topics { max-width: 760px; margin: 0 auto; padding: 1rem 1.25rem 2rem; }
+.topics h2 { font-size: 1.25rem; margin: 1.5rem 0 0.25rem; scroll-margin-top: 1rem; }
+.topics p { margin: 0; }
+.footer { text-align: center; font-size: 0.9rem; padding: 1.5rem 1rem; background: var(--bar); color: #cfd8dc; }
+html { scroll-behavior: smooth; }
+
+/* ---------- Small screens: stack and wrap ---------- */
+@media (max-width: 720px) {
+  .navbar { flex-direction: column; align-items: stretch; padding: 0 0.5rem 0.5rem; }
+  .brand { padding: 0.8rem 0.5rem 0.3rem; }
+  .menu { flex-direction: column; align-items: stretch; }
+  .menu .btn { text-align: center; margin: 0.2rem 0; }
+  .drop-list { position: static; background: #2a2a2a; }
+  .drop-list a { padding-left: 1.8rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
